@@ -3,191 +3,313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Andi ❤️ Oumaima</title>
+<title>Nikah | Andi & Oumaima</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Great+Vibes&family=Inter:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    background:#0f0f12;
+    font-family:'Inter',sans-serif;
+    background:#fdfbf7;
     overflow:hidden;
-    font-family:'Playfair Display',serif;
 }
 
-/* Cinematic Container */
-.cinematic-wrapper{
-    position:relative;
+/* GOLD */
+.gold{ color:#C6A75E; }
+
+.divider{
+    width:70px;
+    height:2px;
+    background:#C6A75E;
+    margin:30px auto;
+}
+
+/* ENVELOPE */
+.seal-screen{
+    position:fixed;
     width:100%;
-    height:100vh;
-    overflow:hidden;
-    animation:slowZoom 25s ease-in-out infinite alternate;
+    height:100%;
+    background:#fdfbf7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+    transition:1.5s ease;
 }
 
-@keyframes slowZoom{
-    from{ transform:scale(1); }
-    to{ transform:scale(1.05); }
+.envelope{
+    position:relative;
+    width:360px;
+    height:220px;
+    background:#ffffff;
+    box-shadow:0 25px 60px rgba(0,0,0,0.08);
+    perspective:1000px;
 }
 
-/* Soft vignette */
-.vignette{
+.flap{
     position:absolute;
     width:100%;
     height:100%;
-    background:radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+    background:#f7f3ec;
+    clip-path:polygon(0 0,100% 0,50% 70%);
+    transform-origin:top;
+    transition:1.5s cubic-bezier(.77,0,.18,1);
     z-index:3;
 }
 
-/* Countries */
-.country{
+.letter{
     position:absolute;
-    width:450px;
-    filter: drop-shadow(0 25px 50px rgba(0,0,0,0.6));
-    animation:float 6s ease-in-out infinite;
+    width:90%;
+    height:150px;
+    background:#fff;
+    top:35px;
+    left:5%;
+    text-align:center;
+    padding-top:50px;
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    letter-spacing:4px;
+    color:#C6A75E;
+    transform:translateY(40px);
+    transition:1.6s ease;
     z-index:1;
 }
 
-.albania{
-    left:8%;
-    top:35%;
-}
-
-.morocco{
-    right:8%;
-    top:32%;
-}
-
-@keyframes float{
-    0%{ transform:translateY(0px); }
-    50%{ transform:translateY(-20px); }
-    100%{ transform:translateY(0px); }
-}
-
-/* SVG Connection */
-.connection-svg{
+.seal{
     position:absolute;
-    width:100%;
-    height:100%;
-    z-index:2;
-    pointer-events:none;
+    width:85px;
+    height:85px;
+    background:radial-gradient(circle at 30% 30%, #d64545, #7a0000);
+    border-radius:50%;
+    top:60%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    transition:.3s;
 }
 
-/* Gold Gradient */
-#goldLine{
-    stroke-dasharray:3000;
-    stroke-dashoffset:3000;
-    filter: drop-shadow(0 0 25px rgba(255,215,130,0.9));
-    animation:drawLine 4s ease forwards 1s;
+.seal:active{ transform:translate(-50%,-50%) scale(0.92); }
+
+.monogram{
+    font-family:'Great Vibes',cursive;
+    font-size:30px;
+    color:#f3d58a;
+}
+
+.open .flap{ transform:rotateX(180deg); }
+.open .letter{ transform:translateY(-120px); }
+
+.fade-out{
+    opacity:0;
+    transform:scale(1.03);
+}
+
+/* INVITATION */
+.wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    min-height:100vh;
+    padding:40px;
+    opacity:0;
+    transform:translateY(60px);
+    transition:1.2s ease;
+}
+
+.reveal{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.invitation{
+    max-width:700px;
+    text-align:center;
+}
+
+.top-text{
+    font-family:'Playfair Display',serif;
+    letter-spacing:6px;
+    font-size:18px;
+    margin-bottom:50px;
+}
+
+.names{
+    font-family:'Great Vibes',cursive;
+    font-size:85px;
+    margin-bottom:40px;
+}
+
+.date{
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    letter-spacing:8px;
+    margin-bottom:10px;
+}
+
+.time{
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    letter-spacing:4px;
+    margin-bottom:40px;
+}
+
+.body-text{
+    font-size:18px;
+    line-height:1.8;
+    margin-top:40px;
+}
+
+.address{
+    margin-top:40px;
+    font-size:16px;
+    letter-spacing:2px;
+}
+
+.map-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 28px;
+    border:1px solid #C6A75E;
+    color:#C6A75E;
+    text-decoration:none;
+    letter-spacing:3px;
+    transition:.3s;
+}
+
+.map-btn:hover{
+    background:#C6A75E;
+    color:white;
+}
+
+/* LOVE MAP SECTION */
+.love-section{
+    margin-top:100px;
+    max-width:900px;
+}
+
+.love-section svg{
+    width:100%;
+}
+
+#connection-line{
+    filter: drop-shadow(0 0 6px rgba(198,167,94,0.6));
+    stroke-dasharray:1500;
+    stroke-dashoffset:1500;
+    animation:drawLine 3s ease forwards 2s;
 }
 
 @keyframes drawLine{
     to{ stroke-dashoffset:0; }
 }
 
-/* Heart Pulse */
 #heart{
     transform-origin:center;
-    animation:heartPulse 3s infinite ease-in-out 5s;
-    filter: drop-shadow(0 0 30px rgba(255,215,130,1));
+    animation:pulse 2s infinite ease-in-out 5s;
 }
 
-@keyframes heartPulse{
+@keyframes pulse{
     0%{ transform:scale(1); }
-    50%{ transform:scale(1.3); }
+    50%{ transform:scale(1.15); }
     100%{ transform:scale(1); }
 }
 
-/* Glow dot */
-#glowDot{
-    filter: drop-shadow(0 0 15px #FFD700);
+/* PETALS */
+.petal{
+    position:fixed;
+    top:-50px;
+    width:15px;
+    height:20px;
+    background:radial-gradient(circle at 30% 30%, #f8d7da, #e9a1b0);
+    border-radius:50% 50% 50% 0;
+    opacity:0.7;
+    transform:rotate(45deg);
+    animation:fall linear infinite;
 }
 
-/* Spark Particles */
-.spark{
-    position:absolute;
-    width:4px;
-    height:4px;
-    background:#FFD700;
-    border-radius:50%;
-    opacity:0.8;
-    animation:rise linear infinite;
-}
-
-@keyframes rise{
-    0%{ transform:translateY(0); opacity:0; }
-    20%{ opacity:1; }
-    100%{ transform:translateY(-100vh); opacity:0; }
-}
-
-/* Center Names */
-.center-text{
-    position:absolute;
-    width:100%;
-    text-align:center;
-    top:15%;
-    color:#F5E6B3;
-    z-index:4;
-}
-
-.center-text h1{
-    font-family:'Great Vibes',cursive;
-    font-size:90px;
-    margin-bottom:20px;
-}
-
-.center-text p{
-    font-size:24px;
-    letter-spacing:5px;
+@keyframes fall{
+    0%{ transform:translateY(-50px) rotate(0deg); }
+    100%{ transform:translateY(110vh) rotate(360deg); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="cinematic-wrapper">
+<div class="seal-screen" id="sealScreen">
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="letter">NIKAH INVITATION</div>
+        <div class="seal" onclick="openEnvelope()">
+            <div class="monogram">A & O</div>
+        </div>
+    </div>
+</div>
 
-    <div class="vignette"></div>
+<div class="wrapper" id="mainContent">
 
-    <!-- Countries -->
-    <img src="albania.png" class="country albania">
-    <img src="morocco.png" class="country morocco">
+<div class="invitation">
+    <div class="top-text gold">In the Name of Allah</div>
+    <div class="names gold">Andi & Oumaima</div>
+    <div class="date gold">04 • 04 • 2026</div>
+    <div class="time gold">5:00 PM</div>
+    <div class="divider"></div>
 
-    <!-- Center Names -->
-    <div class="center-text">
-        <h1>Andi & Oumaima</h1>
-        <p>04 • 04 • 2026 • 5:00 PM</p>
+    <div class="body-text">
+        With gratitude and joy, we invite you to witness and celebrate
+        our Nikah ceremony.
     </div>
 
-    <!-- SVG Connection -->
-    <svg class="connection-svg" viewBox="0 0 1600 900">
+    <div class="address gold">
+        319 Broadway<br>
+        Arlington, MA 02474
+    </div>
 
-        <defs>
-            <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#C6A75E"/>
-                <stop offset="50%" stop-color="#F5E6B3"/>
-                <stop offset="100%" stop-color="#C6A75E"/>
-            </linearGradient>
-        </defs>
+    <a class="map-btn"
+       href="https://www.google.com/maps/search/?api=1&query=319+Broadway,+Arlington,+MA+02474"
+       target="_blank">
+       VIEW MAP
+    </a>
+</div>
 
-        <path id="goldLine"
-              d="M600 500 C850 200, 1050 200, 1300 480"
-              fill="none"
-              stroke="url(#goldGradient)"
-              stroke-width="10"
-              stroke-linecap="round"/>
+<div class="love-section">
+<svg viewBox="0 0 900 350">
 
-        <circle id="glowDot" r="12" fill="#F5E6B3"/>
+<!-- Albania -->
+<path d="M180 140 L210 110 L250 100 L270 140 L240 180 L200 170 Z"
+fill="#E41E26" stroke="#000" stroke-width="2"/>
 
-        <path id="heart"
-              d="M950 260
-                 C900 180, 800 180, 800 300
-                 C800 380, 950 480, 950 480
-                 C950 480, 1100 380, 1100 300
-                 C1100 180, 1000 180, 950 260 Z"
-              fill="url(#goldGradient)"/>
+<!-- Morocco -->
+<path d="M650 120 L700 130 L710 180 L670 210 L630 170 Z"
+fill="#C1272D" stroke="#000" stroke-width="2"/>
 
-    </svg>
+<!-- Morocco Star -->
+<polygon points="670,145 685,175 650,155 690,155 655,175"
+fill="none" stroke="#006233" stroke-width="3"/>
+
+<!-- Connection -->
+<path id="connection-line"
+d="M250 140 C400 60, 500 60, 650 150"
+fill="none" stroke="#C6A75E" stroke-width="3"/>
+
+<!-- Heart -->
+<path id="heart"
+d="M450 95
+   C440 75, 410 75, 410 105
+   C410 130, 450 150, 450 150
+   C450 150, 490 130, 490 105
+   C490 75, 460 75, 450 95 Z"
+fill="#C6A75E"/>
+
+</svg>
+</div>
 
 </div>
 
@@ -196,50 +318,44 @@ body{
 </audio>
 
 <script>
-const path = document.getElementById("goldLine");
-const glowDot = document.getElementById("glowDot");
-const music = document.getElementById("bgMusic");
+function openEnvelope(){
+    const envelope=document.getElementById("envelope");
+    const screen=document.getElementById("sealScreen");
+    const main=document.getElementById("mainContent");
+    const music=document.getElementById("bgMusic");
 
-const length = path.getTotalLength();
-let progress = 0;
-
-function animateGlow(){
-    progress += 5;
-    if(progress > length) progress = 0;
-    const point = path.getPointAtLength(progress);
-    glowDot.setAttribute("cx", point.x);
-    glowDot.setAttribute("cy", point.y);
-    requestAnimationFrame(animateGlow);
-}
-
-setTimeout(()=>{ animateGlow(); },2000);
-
-/* Sparks */
-function createSparks(){
-    const container = document.querySelector(".cinematic-wrapper");
-    for(let i=0;i<60;i++){
-        let spark=document.createElement("div");
-        spark.classList.add("spark");
-        spark.style.left=Math.random()*100+"%";
-        spark.style.bottom="-20px";
-        spark.style.animationDuration=(6+Math.random()*6)+"s";
-        spark.style.animationDelay=Math.random()*5+"s";
-        container.appendChild(spark);
-    }
-}
-createSparks();
-
-/* Fade-in Music */
-function startMusic(){
     music.volume = 0;
     music.play();
     let fade = setInterval(()=>{
-        if(music.volume < 0.6){
+        if(music.volume < 0.5){
             music.volume += 0.02;
         } else clearInterval(fade);
     },200);
+
+    envelope.classList.add("open");
+
+    setTimeout(()=>{
+        screen.classList.add("fade-out");
+    },1500);
+
+    setTimeout(()=>{
+        screen.style.display="none";
+        document.body.style.overflow="auto";
+        main.classList.add("reveal");
+        createPetals();
+    },2200);
 }
-startMusic();
+
+function createPetals(){
+    for(let i=0;i<20;i++){
+        let petal=document.createElement("div");
+        petal.classList.add("petal");
+        petal.style.left=Math.random()*100+"vw";
+        petal.style.animationDuration=(6+Math.random()*5)+"s";
+        petal.style.animationDelay=Math.random()*5+"s";
+        document.body.appendChild(petal);
+    }
+}
 </script>
 
 </body>
