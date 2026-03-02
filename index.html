@@ -16,7 +16,7 @@ body{
     overflow:hidden;
 }
 
-/* ================= GOLD ================= */
+/* GOLD */
 .gold{ color:#C6A75E; }
 
 .divider{
@@ -26,7 +26,7 @@ body{
     margin:30px auto;
 }
 
-/* ================= ENVELOPE ================= */
+/* ENVELOPE */
 .seal-screen{
     position:fixed;
     width:100%;
@@ -94,6 +94,7 @@ body{
     box-shadow:0 10px 25px rgba(0,0,0,0.25);
     transition:.3s;
 }
+
 .seal:active{ transform:translate(-50%,-50%) scale(0.92); }
 
 .monogram{
@@ -110,11 +111,12 @@ body{
     transform:scale(1.03);
 }
 
-/* ================= INVITATION ================= */
+/* INVITATION */
 .wrapper{
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
     min-height:100vh;
     padding:40px;
     opacity:0;
@@ -128,7 +130,6 @@ body{
 }
 
 .invitation{
-    width:100%;
     max-width:700px;
     text-align:center;
 }
@@ -150,7 +151,7 @@ body{
     font-family:'Playfair Display',serif;
     font-size:22px;
     letter-spacing:8px;
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 .time{
@@ -172,7 +173,6 @@ body{
     letter-spacing:2px;
 }
 
-/* Map Button */
 .map-btn{
     display:inline-block;
     margin-top:25px;
@@ -183,12 +183,45 @@ body{
     letter-spacing:3px;
     transition:.3s;
 }
+
 .map-btn:hover{
     background:#C6A75E;
     color:white;
 }
 
-/* ================= FLOATING PETALS ================= */
+/* LOVE MAP SECTION */
+.love-section{
+    margin-top:100px;
+    max-width:900px;
+}
+
+.love-section svg{
+    width:100%;
+}
+
+#connection-line{
+    filter: drop-shadow(0 0 6px rgba(198,167,94,0.6));
+    stroke-dasharray:1500;
+    stroke-dashoffset:1500;
+    animation:drawLine 3s ease forwards 2s;
+}
+
+@keyframes drawLine{
+    to{ stroke-dashoffset:0; }
+}
+
+#heart{
+    transform-origin:center;
+    animation:pulse 2s infinite ease-in-out 5s;
+}
+
+@keyframes pulse{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.15); }
+    100%{ transform:scale(1); }
+}
+
+/* PETALS */
 .petal{
     position:fixed;
     top:-50px;
@@ -210,7 +243,6 @@ body{
 
 <body>
 
-<!-- ENTRANCE -->
 <div class="seal-screen" id="sealScreen">
     <div class="envelope" id="envelope">
         <div class="flap"></div>
@@ -221,17 +253,13 @@ body{
     </div>
 </div>
 
-<!-- INVITATION -->
 <div class="wrapper" id="mainContent">
+
 <div class="invitation">
-
     <div class="top-text gold">In the Name of Allah</div>
-
     <div class="names gold">Andi & Oumaima</div>
-
     <div class="date gold">04 • 04 • 2026</div>
     <div class="time gold">5:00 PM</div>
-
     <div class="divider"></div>
 
     <div class="body-text">
@@ -249,22 +277,60 @@ body{
        target="_blank">
        VIEW MAP
     </a>
-
-</div>
 </div>
 
-<audio id="sealSound" src="https://assets.mixkit.co/sfx/preview/mixkit-paper-flutter-482.mp3"></audio>
+<div class="love-section">
+<svg viewBox="0 0 900 350">
+
+<!-- Albania -->
+<path d="M180 140 L210 110 L250 100 L270 140 L240 180 L200 170 Z"
+fill="#E41E26" stroke="#000" stroke-width="2"/>
+
+<!-- Morocco -->
+<path d="M650 120 L700 130 L710 180 L670 210 L630 170 Z"
+fill="#C1272D" stroke="#000" stroke-width="2"/>
+
+<!-- Morocco Star -->
+<polygon points="670,145 685,175 650,155 690,155 655,175"
+fill="none" stroke="#006233" stroke-width="3"/>
+
+<!-- Connection -->
+<path id="connection-line"
+d="M250 140 C400 60, 500 60, 650 150"
+fill="none" stroke="#C6A75E" stroke-width="3"/>
+
+<!-- Heart -->
+<path id="heart"
+d="M450 95
+   C440 75, 410 75, 410 105
+   C410 130, 450 150, 450 150
+   C450 150, 490 130, 490 105
+   C490 75, 460 75, 450 95 Z"
+fill="#C6A75E"/>
+
+</svg>
+</div>
+
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 function openEnvelope(){
     const envelope=document.getElementById("envelope");
     const screen=document.getElementById("sealScreen");
     const main=document.getElementById("mainContent");
-    const sound=document.getElementById("sealSound");
     const music=document.getElementById("bgMusic");
 
-    sound.play();
+    music.volume = 0;
     music.play();
+    let fade = setInterval(()=>{
+        if(music.volume < 0.5){
+            music.volume += 0.02;
+        } else clearInterval(fade);
+    },200);
 
     envelope.classList.add("open");
 
@@ -280,20 +346,17 @@ function openEnvelope(){
     },2200);
 }
 
-/* Floating petals generator */
 function createPetals(){
-    for(let i=0;i<15;i++){
+    for(let i=0;i<20;i++){
         let petal=document.createElement("div");
         petal.classList.add("petal");
         petal.style.left=Math.random()*100+"vw";
-        petal.style.animationDuration=(5+Math.random()*5)+"s";
+        petal.style.animationDuration=(6+Math.random()*5)+"s";
         petal.style.animationDelay=Math.random()*5+"s";
         document.body.appendChild(petal);
     }
 }
 </script>
-<audio id="bgMusic" loop>
-  <source src="love-story.mp3" type="audio/mpeg">
-</audio>
+
 </body>
 </html>
