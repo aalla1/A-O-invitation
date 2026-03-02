@@ -19,6 +19,13 @@ body{
 /* ================= GOLD ================= */
 .gold{ color:#C6A75E; }
 
+.divider{
+    width:70px;
+    height:2px;
+    background:#C6A75E;
+    margin:30px auto;
+}
+
 /* ================= ENVELOPE ================= */
 .seal-screen{
     position:fixed;
@@ -121,26 +128,9 @@ body{
 }
 
 .invitation{
-    position:relative;
-    background:white;
     width:100%;
-    max-width:750px;
-    padding:120px 80px;
+    max-width:700px;
     text-align:center;
-    border:2px solid #C6A75E;
-    box-shadow:0 25px 60px rgba(0,0,0,0.08);
-}
-
-/* Inner thin frame */
-.invitation::before{
-    content:"";
-    position:absolute;
-    top:15px;
-    left:15px;
-    right:15px;
-    bottom:15px;
-    border:1px solid #C6A75E;
-    pointer-events:none;
 }
 
 .top-text{
@@ -170,13 +160,6 @@ body{
     margin-bottom:40px;
 }
 
-.divider{
-    width:70px;
-    height:2px;
-    background:#C6A75E;
-    margin:30px auto;
-}
-
 .body-text{
     font-size:18px;
     line-height:1.8;
@@ -203,6 +186,24 @@ body{
 .map-btn:hover{
     background:#C6A75E;
     color:white;
+}
+
+/* ================= FLOATING PETALS ================= */
+.petal{
+    position:fixed;
+    top:-50px;
+    width:15px;
+    height:20px;
+    background:radial-gradient(circle at 30% 30%, #f8d7da, #e9a1b0);
+    border-radius:50% 50% 50% 0;
+    opacity:0.7;
+    transform:rotate(45deg);
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{ transform:translateY(-50px) rotate(0deg); }
+    100%{ transform:translateY(110vh) rotate(360deg); }
 }
 </style>
 </head>
@@ -272,7 +273,20 @@ function openEnvelope(){
         screen.style.display="none";
         document.body.style.overflow="auto";
         main.classList.add("reveal");
+        createPetals();
     },2200);
+}
+
+/* Floating petals generator */
+function createPetals(){
+    for(let i=0;i<15;i++){
+        let petal=document.createElement("div");
+        petal.classList.add("petal");
+        petal.style.left=Math.random()*100+"vw";
+        petal.style.animationDuration=(5+Math.random()*5)+"s";
+        petal.style.animationDelay=Math.random()*5+"s";
+        document.body.appendChild(petal);
+    }
 }
 </script>
 
