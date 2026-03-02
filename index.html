@@ -9,17 +9,16 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
     font-family:'Inter',sans-serif;
     background:#fdfbf7;
-    color:#1a1a1a;
     overflow:hidden;
 }
 
 /* ================= GOLD ================= */
-.gold{
-    color:#C6A75E;
-}
+.gold{ color:#C6A75E; }
+
 .gold-line{
     width:80px;
     height:2px;
@@ -27,7 +26,7 @@ body{
     margin:40px auto;
 }
 
-/* ================= ENVELOPE ENTRANCE ================= */
+/* ================= ENVELOPE ================= */
 .seal-screen{
     position:fixed;
     width:100%;
@@ -104,63 +103,84 @@ body{
     color:#f3d58a;
 }
 
-/* Open animation */
-.open .flap{
-    transform:rotateX(180deg);
-}
-.open .letter{
-    transform:translateY(-120px);
-}
+.open .flap{ transform:rotateX(180deg); }
+.open .letter{ transform:translateY(-120px); }
+
 .fade-out{
     opacity:0;
     transform:scale(1.03);
 }
 
-/* ================= MAIN CONTENT ================= */
-.section{
-    padding:140px 20px;
-    text-align:center;
-    max-width:900px;
-    margin:auto;
+/* ================= INVITATION ================= */
+.invitation-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:30px;
     opacity:0;
     transform:translateY(60px);
     transition:1.2s ease;
 }
+
 .reveal{
     opacity:1;
     transform:translateY(0);
 }
 
+.invitation{
+    position:relative;
+    background:white;
+    width:100%;
+    max-width:700px;
+    padding:120px 60px;
+    text-align:center;
+    box-shadow:0 25px 60px rgba(0,0,0,0.08);
+    border-radius:6px;
+    overflow:hidden;
+}
+
+/* Floral decorations */
+.flower{
+    position:absolute;
+    width:180px;
+    opacity:0.85;
+}
+
+.flower.top-left{ top:-40px; left:-40px; }
+.flower.top-right{ top:-40px; right:-40px; transform:scaleX(-1); }
+.flower.bottom-left{ bottom:-40px; left:-40px; transform:scaleY(-1); }
+.flower.bottom-right{ bottom:-40px; right:-40px; transform:scale(-1); }
+
 .top-text{
     font-family:'Playfair Display',serif;
     letter-spacing:6px;
-    font-size:20px;
-    margin-bottom:60px;
+    font-size:18px;
+    margin-bottom:50px;
 }
 
 .names{
     font-family:'Great Vibes',cursive;
-    font-size:90px;
-    margin-bottom:50px;
+    font-size:80px;
+    margin-bottom:40px;
 }
 
 .date{
     font-family:'Playfair Display',serif;
-    font-size:28px;
+    font-size:22px;
     letter-spacing:8px;
     margin-bottom:40px;
 }
 
 .body-text{
-    max-width:650px;
-    margin:50px auto;
-    font-size:20px;
+    font-size:18px;
     line-height:1.8;
+    margin-top:40px;
 }
 
 .address{
     margin-top:40px;
-    font-size:18px;
+    font-size:16px;
     letter-spacing:2px;
 }
 </style>
@@ -179,8 +199,17 @@ body{
     </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="section" id="mainContent">
+<!-- MAIN INVITATION -->
+<div class="invitation-wrapper" id="mainContent">
+
+<div class="invitation">
+
+    <!-- Floral frame -->
+    <img class="flower top-left" src="https://www.transparentpng.com/thumb/floral-border/floral-border-png-clipart-3.png">
+    <img class="flower top-right" src="https://www.transparentpng.com/thumb/floral-border/floral-border-png-clipart-3.png">
+    <img class="flower bottom-left" src="https://www.transparentpng.com/thumb/floral-border/floral-border-png-clipart-3.png">
+    <img class="flower bottom-right" src="https://www.transparentpng.com/thumb/floral-border/floral-border-png-clipart-3.png">
+
     <div class="top-text gold">In the Name of Allah</div>
 
     <div class="names gold">Andi & Oumaima</div>
@@ -198,13 +227,20 @@ body{
         319 Broadway<br>
         Arlington, MA 02474
     </div>
+
 </div>
+</div>
+
+<audio id="sealSound" src="https://assets.mixkit.co/sfx/preview/mixkit-paper-flutter-482.mp3"></audio>
 
 <script>
 function openEnvelope(){
     const envelope=document.getElementById("envelope");
     const screen=document.getElementById("sealScreen");
+    const main=document.getElementById("mainContent");
+    const sound=document.getElementById("sealSound");
 
+    sound.play();
     envelope.classList.add("open");
 
     setTimeout(()=>{
@@ -214,17 +250,8 @@ function openEnvelope(){
     setTimeout(()=>{
         screen.style.display="none";
         document.body.style.overflow="auto";
-        reveal();
-        window.addEventListener("scroll",reveal);
+        main.classList.add("reveal");
     },2200);
-}
-
-function reveal(){
-    const sec=document.getElementById("mainContent");
-    const top=sec.getBoundingClientRect().top;
-    if(top < window.innerHeight-120){
-        sec.classList.add("reveal");
-    }
 }
 </script>
 
