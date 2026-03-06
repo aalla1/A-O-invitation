@@ -41,8 +41,8 @@ body{
 
 .envelope{
     position:relative;
-    width:400px;
-    height:260px;
+    width:420px;
+    height:280px;
     background:linear-gradient(145deg,#ffffff,#f3efe8);
     box-shadow:
         0 25px 50px rgba(0,0,0,0.15),
@@ -51,6 +51,7 @@ body{
     border-radius:6px;
 }
 
+/* Flap */
 .flap{
     position:absolute;
     width:100%;
@@ -63,20 +64,260 @@ body{
     box-shadow:0 10px 20px rgba(0,0,0,0.08);
 }
 
+/* Letter */
 .letter{
     position:absolute;
     width:90%;
-    height:180px;
+    height:200px;
     background:white;
-    top:60px;
+    top:80px; /* LOWERED SO TEXT IS FULLY VISIBLE */
     left:5%;
     text-align:center;
-    padding-top:70px;
+    padding-top:80px;
     font-family:'Playfair Display',serif;
-    font-size:22px;
+    font-size:24px;
     letter-spacing:6px;
     color:#C6A75E;
     transform:translateY(40px);
     transition:1.6s ease;
     z-index:1;
-    box-shadow
+    box-shadow:0 15px 25px rgba(0,0,0,0.05);
+}
+
+/* Wax Seal */
+.seal{
+    position:absolute;
+    width:95px;
+    height:95px;
+    background:radial-gradient(circle at 30% 30%, #d84c4c, #7a0000);
+    border-radius:50%;
+    top:65%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.3),
+        inset 0 4px 8px rgba(255,255,255,0.3);
+    transition:.3s;
+}
+
+.seal:active{
+    transform:translate(-50%,-50%) scale(0.92);
+}
+
+.monogram{
+    font-family:'Great Vibes',cursive;
+    font-size:38px;
+    color:#f3d58a;
+    text-shadow:0 2px 3px rgba(0,0,0,0.3);
+}
+
+/* Animation */
+.open .flap{
+    transform:rotateX(180deg);
+}
+
+.open .letter{
+    transform:translateY(-160px);
+}
+
+.fade-out{
+    opacity:0;
+    transform:scale(1.03);
+}
+
+/* ================= INVITATION ================= */
+.wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:40px;
+    opacity:0;
+    transform:translateY(60px);
+    transition:1.2s ease;
+}
+
+.reveal{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.invitation{
+    width:100%;
+    max-width:700px;
+    text-align:center;
+}
+
+.ayah{
+    font-family:'Playfair Display',serif;
+    font-size:20px;
+    font-style:italic;
+    line-height:1.8;
+    margin-bottom:40px;
+    color:#C6A75E;
+}
+
+.names{
+    font-family:'Great Vibes',cursive;
+    font-size:95px;
+    margin-bottom:40px;
+    color:#C6A75E;
+}
+
+.date{
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+    letter-spacing:8px;
+    margin-bottom:15px;
+    color:#C6A75E;
+}
+
+.time{
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    letter-spacing:4px;
+    margin-bottom:40px;
+    color:#C6A75E;
+}
+
+.body-text{
+    font-size:18px;
+    line-height:1.8;
+    margin-top:40px;
+}
+
+.address{
+    margin-top:40px;
+    font-size:16px;
+    letter-spacing:2px;
+    color:#C6A75E;
+}
+
+.map-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 28px;
+    border:1px solid #C6A75E;
+    color:#C6A75E;
+    text-decoration:none;
+    letter-spacing:3px;
+    transition:.3s;
+}
+
+.map-btn:hover{
+    background:#C6A75E;
+    color:white;
+}
+
+/* Petals */
+.petal{
+    position:fixed;
+    top:-50px;
+    width:15px;
+    height:20px;
+    background:radial-gradient(circle at 30% 30%, #f8d7da, #e9a1b0);
+    border-radius:50% 50% 50% 0;
+    opacity:0.7;
+    transform:rotate(45deg);
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{ transform:translateY(-50px) rotate(0deg); }
+    100%{ transform:translateY(110vh) rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENVELOPE -->
+<div class="seal-screen" id="sealScreen">
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="letter">YOU ARE INVITED</div>
+        <div class="seal" onclick="openEnvelope()">
+            <div class="monogram">A & O</div>
+        </div>
+    </div>
+</div>
+
+<!-- INVITATION -->
+<div class="wrapper" id="mainContent">
+<div class="invitation">
+
+    <div class="ayah">
+        “And We created you in pairs.”<br>
+        <span style="font-size:14px;">(Surah An-Naba 78:8)</span>
+    </div>
+
+    <div class="names">Andi & Oumaima</div>
+
+    <div class="date">03 • 04 • 2026</div>
+    <div class="time">5:00 PM</div>
+
+    <div class="divider"></div>
+
+    <div class="body-text">
+        With gratitude and joy, we invite you to witness and celebrate
+        our Nikah ceremony.
+    </div>
+
+    <div class="address">
+        Spinelli's Function Facility<br>
+        10 Newbury St<br>
+        Peabody, MA 01960
+    </div>
+
+    <a class="map-btn"
+       href="https://www.google.com/maps/search/?api=1&query=Spinelli's+Function+Facility,+10+Newbury+St,+Peabody,+MA+01960"
+       target="_blank">
+       VIEW MAP
+    </a>
+
+</div>
+</div>
+
+<audio id="sealSound" src="https://assets.mixkit.co/sfx/preview/mixkit-paper-flutter-482.mp3"></audio>
+
+<script>
+function openEnvelope(){
+    const envelope=document.getElementById("envelope");
+    const screen=document.getElementById("sealScreen");
+    const main=document.getElementById("mainContent");
+    const sound=document.getElementById("sealSound");
+
+    sound.play();
+    envelope.classList.add("open");
+
+    setTimeout(()=>{
+        screen.classList.add("fade-out");
+    },1600);
+
+    setTimeout(()=>{
+        screen.style.display="none";
+        document.body.style.overflow="auto";
+        main.classList.add("reveal");
+        createPetals();
+    },2400);
+}
+
+function createPetals(){
+    for(let i=0;i<18;i++){
+        let petal=document.createElement("div");
+        petal.classList.add("petal");
+        petal.style.left=Math.random()*100+"vw";
+        petal.style.animationDuration=(5+Math.random()*6)+"s";
+        petal.style.animationDelay=Math.random()*5+"s";
+        document.body.appendChild(petal);
+    }
+}
+</script>
+
+</body>
+</html>
