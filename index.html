@@ -16,7 +16,7 @@ body{
     overflow:hidden;
 }
 
-/* ================= GOLD ================= */
+/* GOLD */
 .gold{ color:#C6A75E; }
 
 .divider{
@@ -26,12 +26,12 @@ body{
     margin:30px auto;
 }
 
-/* ================= ENVELOPE ================= */
+/* ================= REALISTIC ENVELOPE ================= */
 .seal-screen{
     position:fixed;
     width:100%;
     height:100%;
-    background:#fdfbf7;
+    background:#f6f2eb;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -41,49 +41,57 @@ body{
 
 .envelope{
     position:relative;
-    width:360px;
-    height:220px;
-    background:#ffffff;
-    box-shadow:0 25px 60px rgba(0,0,0,0.08);
+    width:380px;
+    height:240px;
+    background:linear-gradient(145deg,#ffffff,#f3efe8);
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.15),
+        inset 0 2px 8px rgba(0,0,0,0.05);
     perspective:1000px;
+    border-radius:4px;
 }
 
+/* Envelope flap */
 .flap{
     position:absolute;
     width:100%;
     height:100%;
-    background:#f7f3ec;
-    clip-path:polygon(0 0,100% 0,50% 70%);
+    background:linear-gradient(145deg,#faf7f1,#eae5dc);
+    clip-path:polygon(0 0,100% 0,50% 75%);
     transform-origin:top;
-    transition:1.5s cubic-bezier(.77,0,.18,1);
+    transition:1.6s cubic-bezier(.77,0,.18,1);
     z-index:3;
+    box-shadow:0 8px 15px rgba(0,0,0,0.08);
 }
 
+/* Letter inside */
 .letter{
     position:absolute;
     width:90%;
-    height:150px;
-    background:#fff;
-    top:35px;
+    height:170px;
+    background:white;
+    top:40px;
     left:5%;
     text-align:center;
-    padding-top:50px;
+    padding-top:60px;
     font-family:'Playfair Display',serif;
-    font-size:18px;
-    letter-spacing:4px;
+    font-size:20px;
+    letter-spacing:5px;
     color:#C6A75E;
     transform:translateY(40px);
     transition:1.6s ease;
     z-index:1;
+    box-shadow:0 10px 20px rgba(0,0,0,0.05);
 }
 
+/* Wax seal */
 .seal{
     position:absolute;
-    width:85px;
-    height:85px;
-    background:radial-gradient(circle at 30% 30%, #d64545, #7a0000);
+    width:90px;
+    height:90px;
+    background:radial-gradient(circle at 30% 30%, #d84c4c, #7a0000);
     border-radius:50%;
-    top:60%;
+    top:62%;
     left:50%;
     transform:translate(-50%,-50%);
     z-index:4;
@@ -91,19 +99,31 @@ body{
     justify-content:center;
     align-items:center;
     cursor:pointer;
-    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.3),
+        inset 0 4px 8px rgba(255,255,255,0.3);
     transition:.3s;
 }
-.seal:active{ transform:translate(-50%,-50%) scale(0.92); }
+
+.seal:active{
+    transform:translate(-50%,-50%) scale(0.92);
+}
 
 .monogram{
     font-family:'Great Vibes',cursive;
-    font-size:30px;
+    font-size:32px;
     color:#f3d58a;
+    text-shadow:0 2px 3px rgba(0,0,0,0.3);
 }
 
-.open .flap{ transform:rotateX(180deg); }
-.open .letter{ transform:translateY(-120px); }
+/* Open animation */
+.open .flap{
+    transform:rotateX(180deg);
+}
+
+.open .letter{
+    transform:translateY(-140px);
+}
 
 .fade-out{
     opacity:0;
@@ -172,7 +192,6 @@ body{
     letter-spacing:2px;
 }
 
-/* Map Button */
 .map-btn{
     display:inline-block;
     margin-top:25px;
@@ -183,12 +202,13 @@ body{
     letter-spacing:3px;
     transition:.3s;
 }
+
 .map-btn:hover{
     background:#C6A75E;
     color:white;
 }
 
-/* ================= FLOATING PETALS ================= */
+/* Floating petals */
 .petal{
     position:fixed;
     top:-50px;
@@ -210,18 +230,18 @@ body{
 
 <body>
 
-<!-- ENTRANCE -->
+<!-- ENVELOPE INTRO -->
 <div class="seal-screen" id="sealScreen">
     <div class="envelope" id="envelope">
         <div class="flap"></div>
-        <div class="letter">NIKAH INVITATION</div>
+        <div class="letter">YOU ARE INVITED</div>
         <div class="seal" onclick="openEnvelope()">
             <div class="monogram">A & O</div>
         </div>
     </div>
 </div>
 
-<!-- INVITATION -->
+<!-- INVITATION CONTENT -->
 <div class="wrapper" id="mainContent">
 <div class="invitation">
 
@@ -268,14 +288,14 @@ function openEnvelope(){
 
     setTimeout(()=>{
         screen.classList.add("fade-out");
-    },1500);
+    },1600);
 
     setTimeout(()=>{
         screen.style.display="none";
         document.body.style.overflow="auto";
         main.classList.add("reveal");
         createPetals();
-    },2200);
+    },2300);
 }
 
 function createPetals(){
