@@ -12,7 +12,7 @@
 
 body{
     font-family:'Inter',sans-serif;
-    background:#fdfbf7;
+    background:#f6f2eb;
     overflow:hidden;
 }
 
@@ -41,17 +41,17 @@ body{
 
 .envelope{
     position:relative;
-    width:380px;
-    height:240px;
+    width:400px;
+    height:260px;
     background:linear-gradient(145deg,#ffffff,#f3efe8);
     box-shadow:
-        0 20px 40px rgba(0,0,0,0.15),
+        0 25px 50px rgba(0,0,0,0.15),
         inset 0 2px 8px rgba(0,0,0,0.05);
     perspective:1000px;
-    border-radius:4px;
+    border-radius:6px;
 }
 
-/* Envelope flap */
+/* Flap */
 .flap{
     position:absolute;
     width:100%;
@@ -61,30 +61,30 @@ body{
     transform-origin:top;
     transition:1.6s cubic-bezier(.77,0,.18,1);
     z-index:3;
-    box-shadow:0 8px 15px rgba(0,0,0,0.08);
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
 }
 
-/* Letter inside */
+/* Letter */
 .letter{
     position:absolute;
     width:90%;
-    height:170px;
+    height:180px;
     background:white;
-    top:40px;
+    top:60px;   /* MOVED LOWER */
     left:5%;
     text-align:center;
-    padding-top:60px;
+    padding-top:70px;
     font-family:'Playfair Display',serif;
-    font-size:20px;
-    letter-spacing:5px;
+    font-size:22px;
+    letter-spacing:6px;
     color:#C6A75E;
     transform:translateY(40px);
     transition:1.6s ease;
     z-index:1;
-    box-shadow:0 10px 20px rgba(0,0,0,0.05);
+    box-shadow:0 15px 25px rgba(0,0,0,0.05);
 }
 
-/* Wax seal */
+/* Wax Seal */
 .seal{
     position:absolute;
     width:90px;
@@ -111,18 +111,18 @@ body{
 
 .monogram{
     font-family:'Great Vibes',cursive;
-    font-size:32px;
+    font-size:36px;
     color:#f3d58a;
     text-shadow:0 2px 3px rgba(0,0,0,0.3);
 }
 
-/* Open animation */
+/* Animation */
 .open .flap{
     transform:rotateX(180deg);
 }
 
 .open .letter{
-    transform:translateY(-140px);
+    transform:translateY(-150px);
 }
 
 .fade-out{
@@ -162,7 +162,7 @@ body{
 
 .names{
     font-family:'Great Vibes',cursive;
-    font-size:85px;
+    font-size:90px; /* Bigger A */
     margin-bottom:40px;
 }
 
@@ -208,7 +208,7 @@ body{
     color:white;
 }
 
-/* Floating petals */
+/* Petals */
 .petal{
     position:fixed;
     top:-50px;
@@ -230,7 +230,7 @@ body{
 
 <body>
 
-<!-- ENVELOPE INTRO -->
+<!-- ENVELOPE -->
 <div class="seal-screen" id="sealScreen">
     <div class="envelope" id="envelope">
         <div class="flap"></div>
@@ -241,7 +241,7 @@ body{
     </div>
 </div>
 
-<!-- INVITATION CONTENT -->
+<!-- INVITATION -->
 <div class="wrapper" id="mainContent">
 <div class="invitation">
 
