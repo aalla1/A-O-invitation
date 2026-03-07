@@ -15,10 +15,20 @@ body{
     background:#f6f2eb;
     overflow:hidden;
 }
-
+.ayah{
+    font-style:italic;
+    margin-bottom:70px;
+    font-size:20px;
 /* GOLD */
 .gold{ color:#C6A75E; }
-
+.gold{
+    background:linear-gradient(90deg,#C6A75E,#F5E6B3,#C6A75E);
+    background-size:200% auto;
+    color:transparent;
+    -webkit-background-clip:text;
+    background-clip:text;
+    animation:shimmer 6s linear infinite;
+}
 .divider{
     width:70px;
     height:2px;
@@ -246,9 +256,12 @@ body{
 <!-- INVITATION -->
 <div class="wrapper" id="mainContent">
 <div class="invitation">
-
-    <div class="top-text gold">“And We created you in pairs.”<br> 78:8 </div>
-    <div class="names gold">Andi & Oumaima</div>
+ <div class="arabic gold">
+        وَخَلَقْنَاكُمْ أَزْوَاجًا
+    </div>
+    <div class="ayah gold">
+        “And We created you in pairs.” (78:8)
+    </div>
 
     <div class="date gold">04 • 03 • 2026</div>
     <div class="time gold">5:00 PM</div>
