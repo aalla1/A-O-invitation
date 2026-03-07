@@ -283,20 +283,23 @@ function openEnvelope(){
     const screen=document.getElementById("sealScreen");
     const main=document.getElementById("mainContent");
     const sound=document.getElementById("sealSound");
+    const music=document.getElementById("bgMusic");
 
     sound.play();
+    music.play();
+
     envelope.classList.add("open");
 
     setTimeout(()=>{
         screen.classList.add("fade-out");
-    },1600);
+    },1500);
 
     setTimeout(()=>{
         screen.style.display="none";
         document.body.style.overflow="auto";
         main.classList.add("reveal");
         createPetals();
-    },2300);
+    },2200);
 }
 
 function createPetals(){
